@@ -1,0 +1,139 @@
+{% extends "contenidoComunAdmin.html" %}
+{% load static %}
+
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div class="col-12 d-flex justify-content-center">
+    <p class="TextoReportes">Cantidad de menus vendidos por dia</p>
+</div>
+<table id="dataTable" class="display divDatatable">
+    <thead>
+        <tr>
+            <th>Nombre Menu</th>
+            <th>Cantidad Pedido</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in Lista %}
+        <tr>
+            <td>{{fila.1}}</td>
+            <td>{{fila.2}}</td>
+            <td>{{fila.3}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="col-12 d-flex justify-content-center">
+    <p class="TextoReportes">Ganancia Menu por Dia</p>
+</div>
+<table id="dataTable2" class="display divDatatable">
+    <thead>
+        <tr>
+            <th>Nombre Producto</th>
+            <th>Ganancia</th>
+            <th>Cantidad Pedido</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in Lista2 %}
+        <tr>
+            <td>{{fila.1}}</td>
+            <td>{{fila.2}}</td>
+            <td>{{fila.3}}</td>
+            <td>{{fila.4}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="col-12 d-flex justify-content-center">
+    <p class="TextoReportes">Productos ordenados por dia</p>
+</div>
+<table id="dataTable1" class="display divDatatable">
+    <thead>
+        <tr>
+            <th>Provedor</th>
+            <th>Nombre Producto</th>
+            <th>Cantidad Pedido</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in Lista1 %}
+        <tr>
+            <td>{{fila.1}}</td>
+            <td>{{fila.2}}</td>
+            <td>{{fila.3}}</td>
+            <td>{{fila.4}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ],
+            "order": [
+                [2, "desc"]
+            ]
+        });
+
+    });
+    $(document).ready(function () {
+        $('#dataTable1').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ],
+            "order": [
+                [3, "desc"]
+            ]
+        });
+
+    });
+     $(document).ready(function () {
+        $('#dataTable2').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ],
+            "order": [
+                [3, "desc"]
+            ]
+        });
+
+    });
+</script>
+
+{% endblock endbody %}

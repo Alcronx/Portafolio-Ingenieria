@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="icon" type="image/png" href="" sizes="64x64">
+
+    <!--Libreria Bootstrap 	Css-->
+    <link href="{% static 'Librerias/Bootstrap/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <!--Css FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Librerias/Fontawesome/css/all.min.css' %}">
+    <!--Css slidebar -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Comun/slidebar.css' %}">
+    <!--Css Admin -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Cocina/cocina.css' %}">
+    <!--Css Pagina -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Comun/Pagina.css' %}">
+    <!--Css DataTable -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Librerias/DataTable/datatables.css' %}">
+    <!--Libreria Htmlx-->
+    <script src="{% static 'Librerias/Htmlx/htmx.min.js' %}"></script>
+    {% block head %}{% endblock head %}
+
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only"></span>
+                </button>
+            </div>
+            <div class="p-4">
+                <a class="brand-navbar" href="{% url 'indexCocina' %}">
+                    <img src="{% static 'Imagenes/LogoPortafolio.png' %}" alt="logo" height="100px"
+                        class="logoRestaurant">
+                </a>
+                <h1><a href="" class="logo">Cocina</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="{% url 'tablero' %}"><span class="fa fa-home mr-3"></span>Tablero</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'recetas' %}"><span class="fa fa-user mr-3"></span>Recetas</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'receta' %}"><span class="fa fa-user mr-3"></span>Agregar Recetas</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'desconectar' %}"><span class="fas  fa-sign-out-alt mr-3"></span>
+                            Desconectar</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+
+
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+    <!--Libreria Jquery-->
+    <script src="{% static 'Librerias/Jquery/jquery.min.js' %}"></script>
+
+    <!--Libreria Bootstrap Js-->
+    <script src="{% static 'Librerias/Bootstrap/bootstrap.min.js' %}"></script>
+
+    <!--Diseño Comun Js-->
+    <script src="{% static 'Css/Comun/slidebar.js' %}"></script>
+
+    <!--DataTable Plugin JS -->
+    <script type="text/javascript" charset="utf8" src="{% static 'Librerias/DataTable/datatables.js' %}"></script>
+
+    <!--Sweet Alert-->
+    <script src="{% static 'Librerias/Sweetalert/sweetalert.all.min.js' %}"></script>
+
+    <!--Necesario para htmlx -->
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>
+
+    {% block endbody %}{% endblock endbody %}
+</body>
+
+</html>

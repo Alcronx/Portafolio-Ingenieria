@@ -1,0 +1,15 @@
+<script>
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Reserva Confirmada',
+        '{{nombre}} porfavor dirigase a la mesa {{numeroMesa}}',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Reserva No detectada',
+        'Reserva no encontrada porfavor intentelo denuevo',
+        'error'
+        )
+    {% endif %}
+</script>

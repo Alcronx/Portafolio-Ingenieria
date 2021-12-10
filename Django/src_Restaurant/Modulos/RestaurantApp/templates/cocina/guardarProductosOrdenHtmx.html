@@ -1,0 +1,22 @@
+<script> 
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Menu creado Correctamente',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error Interno Base de datos',
+        'error'
+        )
+    {% endif %}
+    $('#ModalGuardarMenuHTMX').modal('hide');
+</script>

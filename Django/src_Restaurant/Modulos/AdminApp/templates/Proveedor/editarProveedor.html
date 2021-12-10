@@ -1,0 +1,69 @@
+<table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>Rut</th>
+                <th>Nombre Compañia</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Region</th>
+                <th>Comuna</th>
+                <th>Telefono</th>
+                <th>Mail</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td>{{fila.1}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}} {{fila.4}}</td>
+                <td>{{fila.5}} {{fila.6}}</td>
+                <td>{{fila.7}}</td>
+                <td>{{fila.8}}</td>
+                <td>{{fila.10}}</td>
+                <td>{{fila.11}}</td>
+                <td class="d-flex justify-content-center">
+                    <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#ModalEdicion" hx-swap="innerHTML"
+                        hx-get="{% url 'DetallesProveedorHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                        hx-post="{% url 'modalEliminarProveedorHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminacion"
+                        hx-swap="innerHTML">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+
+
+<script>
+    reload();
+
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Proveedor Editado Correctamente',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+    
+</script>

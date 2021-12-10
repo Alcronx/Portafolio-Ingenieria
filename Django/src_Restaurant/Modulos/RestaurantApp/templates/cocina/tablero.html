@@ -1,0 +1,38 @@
+{% extends "cocina/contenidoComunCocina.html" %}
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}
+{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div id="reemplazarOrdenesCocina">
+    <div class="ContenedorOrdenes">
+        {% for fila in  Lista%}
+        <div class="ContenedorOrdenCliente">
+            <h1 class="numeroOrden">Orden N° {{fila.11}}</h1>
+            <h3 class="texto">Mesero: {{fila.7}} {{fila.8}}</h1>
+                <h3 class="texto">Mesa Numero N°{{fila.10}}</h1>
+                    <h4 class="texto"> Platos: </h5>
+                        <div id="TextoOrdenes{{fila.11}}">
+                        </div>
+                        <div hx-target="#TextoOrdenes{{fila.11}}" hx-swap="innerHTML "
+                            hx-get="{% url 'CargarRecetasTablero'%}?id={{fila.0}}" hx-trigger="load">
+                        </div>
+                        <div class="ContenedorBotonOrdenCliente">
+                            <button type="button" class="btn btn-success"  hx-target="#reemplazarOrdenesCocina" hx-swap="innerHTML" hx-get="{% url 'ConfirmarOrdenClienteHtmx'%}?id={{fila.0}}">Success</button>
+                        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+{% endblock endbody %}

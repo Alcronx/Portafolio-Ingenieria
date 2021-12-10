@@ -1,0 +1,11 @@
+<app-header title="Mesero"></app-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let c of compontes" routerLink="{{c.redirectTo}}" detail>
+            <ion-icon slot="start" name="{{c.icon}}"></ion-icon>
+            {{c.name}}
+        </ion-item>
+    </ion-list>
+
+</ion-content>

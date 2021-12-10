@@ -1,0 +1,7 @@
+DISPONIBILIDAD=(
+    ('1','DISPONIBLE'),
+    ('0','NO DISPONIBLE'),
+)
+
+
+

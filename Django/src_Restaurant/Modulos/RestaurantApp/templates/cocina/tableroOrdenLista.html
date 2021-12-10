@@ -1,0 +1,44 @@
+
+<div class="ContenedorOrdenes">
+        {% for fila in  listaResultados%}
+        <div class="ContenedorOrdenCliente">
+            <h1 class="numeroOrden">Orden N° {{fila.11}}</h1>
+            <h3 class="texto">Mesero: {{fila.7}} {{fila.8}}</h1>
+                <h3 class="texto">Mesa Numero N°{{fila.10}}</h1>
+                    <h4 class="texto"> Platos: </h5>
+                        <div id="TextoOrdenes{{fila.11}}">
+                        </div>
+                        <div hx-target="#TextoOrdenes{{fila.11}}" hx-swap="innerHTML "
+                            hx-get="{% url 'CargarRecetasTablero'%}?id={{fila.0}}" hx-trigger="load">
+                        </div>
+                        <div class="ContenedorBotonOrdenCliente">
+                            <button type="button" class="btn btn-success"  hx-target="#reemplazarOrdenesCocina" hx-swap="innerHTML" hx-get="{% url 'ConfirmarOrdenClienteHtmx'%}?id={{fila.0}}">Success</button>
+                        </div>
+        </div>
+        {% endfor %}
+</div>
+
+
+
+<script>
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Orden Terminada',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+    
+</script>

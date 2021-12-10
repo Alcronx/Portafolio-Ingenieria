@@ -1,0 +1,142 @@
+{% extends "cocina/contenidoComunCocina.html" %}
+{% load static %}
+
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div id="reemplazar">
+    <table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <td>Compañia</td>
+                <td>Nombre Producto</td>
+                <td>Descripcion</td>
+                <td>Stock</td>
+                <td>Stock Critico</td>
+                <td>Precio</td>
+                <td>Agregar Productos</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td>{{fila.8}}</td>
+                <td>{{fila.4}}</td>
+                <td>{{fila.5}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}}</td>
+                <td>{{fila.1}}</td>
+                <td class="d-flex justify-content-center">
+                    <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#reemplazarOrden" hx-swap="innerHTML"
+                        hx-get="{% url 'AgregarProductosRecetaHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h1 class="Texto-detalles-Orden">Productos Menu</h1>
+</div>
+
+<div id="reemplazarOrden">
+    <table class="tablaProductos col-12">
+        <tbody>
+            <thead>
+                <tr>
+                    <td>Eliminar</td>
+                    <td>Producto</td>
+                    <td>Cantidad</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            {% if request.session.carritoReceta.items %}
+            {% for key, value in request.session.carritoReceta.items %}
+            <tr class="TablaOrden">
+                <td>
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                        hx-post="{% url 'EliminarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                        hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+                <td>{{value.nombre}}</td>
+                <td>
+                    <div class="input-group botonesCantidadTabla">
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                                hx-post="{% url 'RestarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                                hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                                <span class="fas fa-minus fa-lg"></span>
+                            </button>
+                        </span>
+                        <div class="mr-2 ml-2">{{value.cantidad}}</div>
+                        <span class="input-group-btn">
+                            <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                                hx-post="{% url 'AgregarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                                hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                                <span class="fas fa-plus fa-lg"></span>
+                            </button>
+                        </span>
+                    </div>
+                </td>
+                <td>{{value.acumulado}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-4 d-flex justify-content-center">
+            <button type="button" hx-post="{% url 'LimpiarProductosRecetaHtmx' %}" hx-target="#reemplazarOrden"
+                class="btn btn-danger"> Limpiar </button>
+        </div>
+        <div class="col-4 d-flex justify-content-center" class="btn btn-danger">
+            <button type="button" hx-post="{% url 'ModalGuardarDatosProductosRecetanHtmx' %}"
+                hx-target="#ModalGuardarMenu" hx-swap="innerHTML" class="btn btn-success"> Guardar </button></div>
+        <h2 class="col-4 d-flex justify-content-center">Total: {{totalCarrito}}</h2>
+    </div>
+</div>
+
+<div id="ModalGuardarMenu">
+</div>
+
+
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    });
+
+    function reload() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    }
+</script>
+
+{% endblock endbody %}

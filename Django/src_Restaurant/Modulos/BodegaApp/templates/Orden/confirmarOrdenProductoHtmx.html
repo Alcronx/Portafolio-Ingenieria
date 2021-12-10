@@ -1,0 +1,74 @@
+<table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>Confirmar Recibido</th>
+                <th>Fecha Orden</th>
+                <th>Hora Orden</th>
+                <th>Fecha Recepcion</th>
+                <th>Hora Recepcion</th>
+                <th>Total Orden</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td class="d-flex justify-content-center">
+                <!-- Boton HTMX recepcion!-->
+                    <button type="button" class="btn btn-info mr-2" hx-target="#reemplazar" hx-swap="innerHTML"
+                        hx-get="{% url 'ConfirmarOrdenesProductoHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-check-circle"></i>
+                    </button>
+                <!-- Boton HTMX recepcion!-->
+                    <button type="button" class="btn btn-danger ml-2" hx-target="#reemplazar" hx-swap="innerHTML"
+                        hx-get="{% url 'DesconfirmarOrdenesProductoHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </td>
+                <td>{{fila.1}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}}</td>
+                <td>{{fila.4}}</td>
+                <td>{{fila.5}}</td>
+                <td class="d-flex justify-content-center">
+                    <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-info mr-2" hx-target="#ModalDetalles" hx-swap="innerHTML"
+                        hx-get="{% url 'DetallesOrdenesProductoHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                        hx-post="{% url 'ModalEliminarOrdenProductoHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminacion"
+                        hx-swap="innerHTML">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+<script>
+    reload();
+
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Orden Recepcionada',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+    
+</script>

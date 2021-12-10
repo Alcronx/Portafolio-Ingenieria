@@ -1,0 +1,64 @@
+<table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>Provedor</th>
+                <th>Nombre</th>
+                <th>Stock</th>
+                <th>Stock Critico</th>
+                <th>Precio Compra</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td>{{fila.8}}</td>
+                <td>{{fila.4}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}}</td>
+                <td>{{fila.1}}</td>
+                <td class="d-flex justify-content-center">
+                    <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#ModalEdicion" hx-swap="innerHTML"
+                        hx-get="{% url 'DetallesProductoHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                        hx-post="{% url 'modalEliminarProductoHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminacion"
+                        hx-swap="innerHTML">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+
+<script>
+    reload();
+
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Producto Agregado Correctamente',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+    
+</script>
+
+

@@ -1,0 +1,43 @@
+{% if radioMesas %}
+<h3>Mesas Disponibles</h3>
+<div class="ContenedorMesas">
+    <input name="Nombre" type="hidden" value="{{NombreCliente}}">
+    <input name="Miembros" type="hidden" value="{{Miembros}}">
+    {% for datos in radioMesas %}
+    <div class="Mesas">
+        {% if datos.5 == 1 %}
+        <input type="radio" name="RadioMesas" id="{{datos.0}}" value="{{datos.0}}" checked>
+        {% else %}
+        <input type="radio" name="RadioMesas" id="{{datos.0}}" value="{{datos.0}}">
+        {% endif %}
+
+        <label for="{{datos.0}}">
+            <h4>Mesa {{datos.1}}</h4>
+        </label>
+    </div>
+    {% endfor %}
+</div>
+<div id="botonFormularioMesa" class="button" hx-target="#Alertas" hx-swap="innerHTML"
+    hx-post="{% url 'PedirMesaTotemTotemHtmx'%}">Pedir Mesa</div>
+{% else %}
+<h3>No Existe Disponibilidad Vuelva Pronto</h3>
+<div class="ContenedorbotonRetroceder">
+    <button type="button" id="botonRetroceder2" class="botonNoDisponible">Regresar</button>
+</div>
+{% endif %}
+
+<script>
+    $("#botonFormularioMesa").click(function () {
+        $('#Paso1').addClass("is-active");
+        $('#Paso2').removeClass("is-active");
+        $('#FormularioCliente').addClass("is-active");
+        $('#FormularioMesa').removeClass("is-active");
+    });
+
+    $("#botonRetroceder2").click(function () {
+        $('#Paso1').addClass("is-active");
+        $('#Paso2').removeClass("is-active");
+        $('#FormularioCliente').addClass("is-active");
+        $('#FormularioMesa').removeClass("is-active");
+    });
+</script>

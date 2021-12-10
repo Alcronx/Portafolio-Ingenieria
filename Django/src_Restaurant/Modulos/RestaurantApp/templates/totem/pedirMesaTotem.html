@@ -1,0 +1,21 @@
+<script>
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Mesa Pedida Correctamente Disfrute Su Estadia',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+</script>

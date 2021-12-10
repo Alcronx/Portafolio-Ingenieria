@@ -1,0 +1,41 @@
+<div class="modal fade bd-example-modal-xl" id="ModalDetallesOrden" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content ordencont">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles Orden</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="tablaProductos col-12">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <td>Producto</td>
+                                <td>Cantidad</td>
+                                <td>Total</td>
+                            </tr>
+                        </thead>
+                        {% for fila in ListaOrdenes %}
+                        <tr class="TablaOrden">
+                            <td>{{fila.2}}</td>
+                            <td>{{fila.3}}</td>
+                            <td>{{fila.4}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $('#ModalDetallesOrden').modal('show');
+</script>

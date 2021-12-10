@@ -1,0 +1,15 @@
+<script> 
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Orden Agregada Correctamente',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% endif %}
+</script>

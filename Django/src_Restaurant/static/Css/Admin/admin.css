@@ -1,0 +1,171 @@
+.iconoAgregar {
+    padding-right: 1%;
+    color: #157dc3;
+}
+
+
+.iconoAgregar:hover {
+    color: #39a3e9;
+}
+
+.buttons-html5{
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #978e7f !important;
+}
+
+.buttons-print{
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #978e7f !important;
+}
+
+.TextoReportes{
+    font-size: 40px;
+    ;
+}
+
+/* FORMULARIO EDITAR ( APLICA PARA TODOS LOS EDITAR )*/
+
+.editcont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.editbtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+
+/* Formulario Usuarios */
+.user1 {
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px;
+}
+
+.usercont
+{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.userbtn
+{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+
+/* Formulario Mesa */
+
+.mesa1 {
+     margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px;
+}
+
+.mesacont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.mesabtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+/* Formulario Mesero */
+
+.mesero1{
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px;
+}
+
+.meserocont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+} 
+
+.meserobtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+/* Formulario Reserva */
+
+.reserva1{
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px; 
+}
+
+.reservacont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.reservabtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+/* Formulario Proveedor */
+
+.prov1{
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px; 
+}
+
+.provcont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.provbtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+/* Formulario Producto */
+
+.product1
+{
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px; 
+}
+
+.productcont{
+    width: 400px;
+    background: rgb(255 255 255 / 90%);
+    padding: 100px;
+    margin: auto;
+}
+
+.productbtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+

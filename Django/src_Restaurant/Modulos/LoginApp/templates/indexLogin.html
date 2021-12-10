@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="" sizes="64x64">
+
+    <!--Libreria Bootstrap 	Css-->
+    <link href="{% static 'Librerias/Bootstrap/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <!--Css FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Librerias/Fontawesome/css/all.min.css' %}">
+    <!--Css Login -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Login/login.css' %}">
+    <!-- -->
+
+</head>
+
+<body>
+    <div class="container">
+
+        <img class="imagen-fondo" src="{% static 'Imagenes/LogoPortafolio.png' %}">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-headerLogin">
+                    <h3>Ingresar</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="frmLogin">
+                        {% csrf_token %}
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            {{form.nombre}}
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            {{form.contrasena}}
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Aceptar" class="btn float-right login_btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Libreria Jquery-->
+    <script src="{% static 'Librerias/Jquery/jquery.min.js' %}"></script>
+
+    <!--Libreria Bootstrap Js-->
+    <script src="{% static 'Librerias/Bootstrap/bootstrap.min.js' %}"></script>
+
+    <!--Sweet Alert-->
+    <script src="{% static 'Librerias/Sweetalert/sweetalert.all.min.js' %}"></script>
+
+
+    {% if mensajes %}
+    {% for m in mensajes %}
+        <script>
+            Swal.fire("Error", "{{m}}" , "error");
+        </script>
+    {% endfor %}
+    {% endif %}
+
+</body>
+
+</html>

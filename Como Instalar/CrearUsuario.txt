@@ -1,0 +1,7 @@
+alter session set "_oracle_script"=true;
+
+create user restaurante identified by 1234;
+
+grant all PRIVILEGES to restaurante;
+
+commit;

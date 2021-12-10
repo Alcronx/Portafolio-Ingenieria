@@ -1,0 +1,12 @@
+<app-header title="Clientes"></app-header>
+<ion-content>
+    <ion-title style="text-align: center;">Menus</ion-title>
+    <ion-card *ngFor="let m of menus">
+        <ion-card-header>
+          <ion-card-title>{{m.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <h1>${{m.menuprice}}</h1> 
+        </ion-card-content>
+      </ion-card>
+</ion-content>

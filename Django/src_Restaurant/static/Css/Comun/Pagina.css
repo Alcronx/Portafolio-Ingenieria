@@ -1,0 +1,117 @@
+.contenedorDropdown {
+    width: 220px;
+}
+
+.Texto-detalles-Orden {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #978e7f;
+}
+
+.tablaProductos {
+    -webkit-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.64);
+    -moz-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.64);
+    box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.64);
+}
+
+.TablaOrden td {
+    padding: 5px;
+}
+
+.botonesCantidadTabla {
+    justify-content: center;
+}
+
+.margenPrecios {
+    margin-right: 374px;
+}
+
+.ContenedorTableros {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+/* CSS CARRUSEL */
+
+.ContenedorOrdenCliente {
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    width: 400px;
+    min-width: 400px;
+    height: 600px;
+    margin: 5px;
+    background-color: rgb(206, 206, 206);
+    overflow-y: auto;
+}
+
+.ContenedorOrdenes{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 80vh;
+    align-items: center;
+    overflow-x: auto;
+}
+
+@media (max-width: 1360px) {
+    .ContenedorOrdenCliente {
+        width: 300px;
+        min-width: 300px;
+        height: 500px;
+    }
+    
+    .ContenedorOrdenes{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        min-height: 70vh;
+        align-items: center;
+        overflow-x: auto;
+        justify-content: center;
+    }
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.numeroOrden{
+    text-align: center;
+    color: rgb(61, 61, 61);  
+}
+
+.texto{
+    color: rgb(61, 61, 61);
+    text-align: center;
+}
+
+.ContenedorOrdenCliente p{
+    color: rgb(61, 61, 61);
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 150%;
+}
+
+.ContenedorBotonOrdenCliente{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.FormularioDetallesProductoStock{
+    display: flex;
+    flex-direction: column;
+}
+
+.formularioCocinaArreglado{
+    display: flex;
+    flex-direction: column;
+}

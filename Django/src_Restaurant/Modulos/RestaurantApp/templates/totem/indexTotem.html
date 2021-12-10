@@ -1,0 +1,94 @@
+{% extends "totem/contenidoComunTotem.html" %}
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<a class="BotonDesconectarTotem" href="{% url 'desconectar' %}"><span class="fas  fa-sign-out-alt fa-3x mr-3"></span></a>
+
+<div class="Contenedor">
+    <div class="wrapper">
+        <ul class="steps">
+            <button id="botonRetroceder" class="contenedoriconoRetroceder"><i class="iconoRetroceder fas fa-arrow-alt-circle-left fa-3x"></i></button>
+            <li id="Paso1" class="is-active">Paso 1</li>
+            <li id="Paso2">Paso 2</li>
+        </ul>
+        <form class="form-wrapper" name="formularioClientes" method="post">
+            <fieldset class="section is-active" id="FormularioCliente">
+                <h3>Ingrese Datos para Ingresar al Restaurante</h3>
+                {% csrf_token %}
+                {{form.Nombre}}
+                {{form.Miembros}}
+                <button type="button" data-toggle="modal" data-target="#modalTengoReserva"
+                    class="buttonIngresoReserva mr-5">Tengo Reserva</button>
+                <button type="sumbit" id="botonFormularioCliente" class="button ml-5" hx-target="#ReemplazarMesas"
+                    hx-swap="innerHTML" hx-post="{% url 'listarMesasTotemHtmx'%}">
+                    Ver Disponibilidad
+                </button>
+            </fieldset>
+        </form>
+        <form class="form-wrapper" name="formularioMesas" method="post">
+            <fieldset class="section " id="FormularioMesa">
+                {% csrf_token %}
+                <div id="ReemplazarMesas">
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div id="Alertas">
+    </div>
+</div>
+
+<div id="ModalReservaClienteTotem">
+</div>
+<!-- Modal Agregar Mesa !-->
+<div class="modal fade bd-example-modal-xl" id="modalTengoReserva" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content modalReserva">
+            <div class="modal-header modalReserva">
+                <h5 class="modal-title" id="exampleModalLabel">Indique Datos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modalReserva">
+                <form id="FormularioComprobarReserva" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="textoModal" for="NombreCliente">Nombre Cliente</label>
+                        <input type="text" name="NombreClienteTotem" class="form-control formularioPersonalizado"
+                            id="NombreCliente">
+                    </div>
+                    <div class="form-group">
+                        <label class="textoModal" for="idReservaCliente">Id Reserva</label>
+                        <input type="number" name="idReservaTotem" class="form-control formularioPersonalizado"
+                            id="idReservaCliente">
+                    </div>
+                    <!-- Boton HTMX !-->
+                    <div class="ContenedorBotonReserva">
+                        <button id="EliminarDatosFormularioReserva" type="submit" class="btn botonModalReserva"
+                            hx-post="{% url 'comprobarReservaHtmx' %}" hx-target="#ModalReservaClienteTotem"
+                            hx-swap="innerHTML" data-dismiss="modal">
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer modalReserva">
+                <button type="button" class="btn botonModalReserva" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+<!-- Contenido Al final del body    !-->
+{% block endbody %}{% endblock endbody %}

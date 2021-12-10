@@ -1,0 +1,56 @@
+<table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>N° Mesa</th>
+                <th>Fecha Reserva</th>
+                <th>Hora Reserva</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td>{{fila.4}}</td>
+                <td>{{fila.1}}</td>
+                <td>{{fila.2}}</td>
+                <td class="d-flex justify-content-center">
+                      <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#ModalEdicion" hx-swap="innerHTML" hx-get="{% url 'DetallesReservaHtmx'%}?id={{fila.0}}">
+                            <i class="fas fa-edit"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2" hx-post="{% url 'modalEliminarReservaHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminacion" hx-swap="innerHTML">
+                    <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+<script>
+    reload();
+
+    {% if resultado == 1 %}
+        Swal.fire(
+        'Exito',
+        'Reserva Editada Correctamente',
+        'success'
+        )
+    {% elif resultado == 0 %}
+         Swal.fire(
+        'Error',
+        'Error Interno del servidor',
+        'error'
+        )
+    {% elif resultado == -1 %}
+         Swal.fire(
+        'Error',
+        'Error interno en la base de datos',
+        'error'
+        )
+    {% endif %}
+    
+</script>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Restaurant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let c of compontes" routerLink="{{c.redirectTo}}" detail>
+        <ion-icon slot="start" name="{{c.icon}}"></ion-icon>
+        {{c.name}}
+      </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom"  horizontal="end" slot="fixed">
+    <ion-fab-button  (click)="AbrirmodalOpciones()" color="light">
+      <ion-icon name="settings-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

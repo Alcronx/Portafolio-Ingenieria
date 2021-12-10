@@ -1,0 +1,120 @@
+{% extends "contenidoComunAdmin.html" %}
+{% load static %}
+
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div class="d-flex flex-row-reverse bd-highlight col-12">
+    <a href="#" class="fas fa-user-plus fa-5x iconoAgregar" data-toggle="modal" data-target="#modalAgregar"></a>
+</div>
+<div id="reemplazar">
+    <table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>Rut</th>
+                <th>Nombre Compañia</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Region</th>
+                <th>Comuna</th>
+                <th>Telefono</th>
+                <th>Mail</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td>{{fila.1}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}} {{fila.4}}</td>
+                <td>{{fila.5}} {{fila.6}}</td>
+                <td>{{fila.7}}</td>
+                <td>{{fila.8}}</td>
+                <td>{{fila.10}}</td>
+                <td>{{fila.11}}</td>
+                <td class="d-flex justify-content-center">
+                    <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#ModalEdicion" hx-swap="innerHTML"
+                        hx-get="{% url 'DetallesProveedorHtmx'%}?id={{fila.0}}">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                        hx-post="{% url 'modalEliminarProveedorHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminacion"
+                        hx-swap="innerHTML">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Modal Agregar Mesa !-->
+<div class="modal fade bd-example-modal-xl" id="modalAgregar" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content provcont">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <!-- Boton HTMX !-->
+                    <button type="submit" class="btn btn-primary provbtn" hx-post="{% url 'AgregarProveedorHtmx' %}"
+                        hx-target="#reemplazar" hx-swap="innerHTML">
+                        Agregar Proveedor
+                    </button>
+                </form>
+            </div>
+     
+
+        </div>
+    </div>
+</div>
+<!-- Modal Editar !-->
+<div id="ModalEdicion">
+</div>
+
+<!-- Modal Eliminar-->
+<div id="ModalEliminacion">
+</div>
+
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    });
+
+    function reload() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    }   
+</script>
+
+{% endblock endbody %}

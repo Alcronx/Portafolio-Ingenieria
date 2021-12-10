@@ -1,0 +1,296 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #d4c9b7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 200;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+p,
+li,
+a {
+    font-size: 14px;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+
+/* CLEARFIX */
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.wrapper {
+    width: 100%;
+    margin: 30px 0;
+}
+
+/* STEPS */
+
+.steps {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(35 29 49 / 50%) !important;
+    text-align: center;
+}
+
+
+.steps li {
+    display: inline-block;
+    margin: 20px;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.steps li.is-active {
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+/* FORM */
+
+.form-wrapper .section {
+    padding: 0px 20px 30px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: rgb(35 29 49 / 50%) !important;
+    opacity: 0;
+    -webkit-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
+    -o-transform: scale(1, 0);
+    transform: scale(1, 0);
+    -webkit-transform-origin: top center;
+    -moz-transform-origin: top center;
+    -ms-transform-origin: top center;
+    -o-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    min-height: 300px
+}
+
+.form-wrapper .section h3 {
+    margin-bottom: 30px;
+}
+
+.form-wrapper .section.is-active {
+    opacity: 1;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+}
+
+.form-wrapper .button,
+.form-wrapper .submit {
+    background-color: rgb(56, 48, 51);
+    display: inline-block;
+    padding: 8px 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-family: 'Open Sans', sans-serif !important;
+    margin-top: 40px;
+    border-style: unset;
+}
+
+
+.buttonIngresoReserva {
+    background-color: rgb(56, 48, 51);
+    display: inline-block;
+    padding: 8px 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-family: 'Open Sans', sans-serif !important;
+    margin-top: 40px;
+    border-style: unset;
+}
+
+.form-wrapper .submit {
+    border: none;
+    outline: none;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-wrapper input[type="text"],
+.form-wrapper input[type="number"] {
+    display: block;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #f1f1f1;
+    border: none;
+    width: 50%;
+    outline: none;
+    font-size: 14px !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.form-wrapper input[type="radio"] {
+    display: none;
+}
+
+.form-wrapper input[type="radio"]+label {
+    display: block;
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-wrapper input[type="radio"]+label:before {
+    content: "✔";
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 100%;
+    background-color: white;
+    color: #7a7273;
+    display: none;
+}
+
+.form-wrapper input[type="radio"]:checked+label:before {
+    display: block;
+}
+
+.form-wrapper input[type="radio"]+label h4 {
+    margin: 15px;
+    color: #ccc;
+}
+
+.form-wrapper input[type="radio"]:checked+label {
+    border: 1px solid white;
+}
+
+.form-wrapper input[type="radio"]:checked+label h4 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+/* Css Personalizado */
+
+.Mesas {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.ContenedorMesas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.iconoRetroceder {
+    color: rgb(56, 48, 51);
+    ;
+}
+
+.contenedoriconoRetroceder {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    background-color: unset;
+    border-style: unset;
+}
+
+.botonNoDisponible {
+    background-color: rgb(56, 48, 51);
+    padding: 8px 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px !important;
+    font-family: 'Open Sans', sans-serif !important;
+    border-style: unset;
+}
+
+.ContenedorbotonRetroceder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.ContenedorBotonReserva{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.modalReserva{
+    background-color: #7a7273;
+}
+
+.textoModal{
+    color: white;
+}
+
+.botonModalReserva{
+    background-color: rgb(56, 48, 51);
+    color: white;
+}
+
+
+.BotonDesconectarTotem{
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    color: rgb(56, 48, 51);
+}

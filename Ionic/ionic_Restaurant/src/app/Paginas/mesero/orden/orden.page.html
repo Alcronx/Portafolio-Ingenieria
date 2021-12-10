@@ -1,0 +1,94 @@
+<app-header title="Orden"></app-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Mesero</ion-label>
+      <ion-select [(ngModel)]="idMesero" placeholder="Seleccione">
+        <ion-select-option *ngFor="let m of mesero" value="{{m.waiterid}}">{{m.name1}} {{m.lastname1}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Mesa/Cliente</ion-label>
+      <ion-select [(ngModel)]="idCliente" placeholder="Seleccione">
+        <ion-select-option *ngFor="let m of mesa" value="{{m.rt_tableid_related[0].clientid}}">N°{{m.tableNumber}} - {{m.rt_tableid_related[0].name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="9">
+        <ion-list>
+          <ion-item>
+            <ion-label>Menu</ion-label>
+            <ion-select [(ngModel)]="DatosSelectCarrito" placeholder="Seleccione">
+              <ion-select-option  *ngFor="let m of menus" [value]="{menuid: m.menuid, name: m.name, menuprice: m.menuprice}">{{m.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="3" class="divBotonAgregarManu">
+        <ion-button (click)="agregarAlCarro()" color="success">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <hr>
+    <ion-row>
+      <ion-col size="4" class="ion-padding centrarTexto">
+        <ion-label>Producto</ion-label>
+      </ion-col>
+      <ion-col size="4" class="ion-padding centrarTexto">
+        <ion-label>Cantidad</ion-label>
+      </ion-col>
+      <ion-col size="4" class="ion-padding centrarTexto">
+        <ion-label>Precio</ion-label>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row *ngFor="let c of carritoOrden">
+      <ion-col size="4" class="centrarTexto">
+        <ion-label class="paddingPersonalizado centrarTexto">{{c.name}}</ion-label>
+      </ion-col>
+      <ion-col size="4" class="centrarTexto">
+        <ion-button (click)="bajarCantidad(c)" fill="clear"  >
+          <ion-icon size="large" name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-label class="paddingPersonalizado2 centrarTexto">{{c.quantity}}</ion-label>
+        <ion-button (click)="subirCantidad(c)" fill="clear">
+          <ion-icon size="large" name="add-circle-outline"></ion-icon>
+        </ion-button> 
+      </ion-col>
+      <ion-col size="4" class="centrarTexto">
+        <ion-label class="paddingPersonalizado centrarTexto">${{c.total | number}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4" class="centrarTexto"><ion-label >Total:</ion-label></ion-col>
+      <ion-col size="4" class="centrarTexto"><ion-label ></ion-label></ion-col>
+      <ion-col size="4" class="centrarTexto"><ion-label>${{totalCarrito | number}}</ion-label></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-margin-top">
+    <ion-row>
+      <ion-col size="4">
+        <ion-button (click)="cancelarOrden()" color="primary"color="danger" expand="block" shape="round">
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <ion-button (click)="guardarOrdenCliente()" expand="block" shape="round">
+          Generar Orden
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>
+

@@ -1,0 +1,36 @@
+1-Instalar "python-3.9.7-amd64"
+
+2- Instalar oracle y sql developer. --linkTutorial: https://www.youtube.com/watch?v=ELI33ngTTm8&t=263s&ab_channel=Codingraph
+
+3-Abrir a sql developer y conectarse como system. --Imagen_de_como_debe_ser: https://prnt.sc/1wr62u3
+
+4-Ejecutar como system Script "CrearUsuario.txt"
+
+5-Crear Entorno Virtual Proyecto en cmd Con este comando "python -m venv EntornoVirtualDejango"
+
+6-Dejar Carpeta del proyecto en entorno virtual --Imagen_de_como_debe_ser: https://prnt.sc/1wrjku9
+
+7-ingresar a carpeta del entorno virtual con cmd y ejecutar comando "Scripts\activate" para activar entorno virtual --Imagen_de_como_debe_ser: https://prnt.sc/1wrk82e
+
+8-Una vez en el entorno virtual ejecutar siguentes comandos:
+	8.1- "python -m pip install --upgrade pip" --para actualizar pip
+	8.2- "pip install Django==3.2.7" --para instalar django en entorno virtual
+	8.3- "pip install cx_oracle" --para instalar archivo necesario para utilizar oracle
+	8.3- "pip install django-cors-headers" --para instalar archivo necesario para apis --'como instalar https://github.com/adamchainz/django-cors-headers'
+	8.3- "pip install djangorestframework" --para instalar archivo necesario para apis
+	8.4- "pip freeze" -- para ver si se instalo todo correctamente --Imagen_de_como_debe_ser: https://prnt.sc/1wrkui0
+
+9-Realizado esto ejecutar lo siguentes comandos en la misma cmd:
+	9.1 "cd src_Restaurant" --para ingresar al proyecto
+	9.2 "python manage.py makemigrations" --para crear los comandos de migracion a la base de datos
+	9.3 "python manage.py migrate" --para realizar las migraciones
+
+10-Ingresar a sql developer y conectarse como restaurant. --Imagen_de_como_debe_ser: https://prnt.sc/1wr69n4
+
+11-Ejecutar como restaurante Script de store procedures
+
+12-Terminado esto ir a cmd qentorno virtual y ejecutar "python manage.py runserver" para ejecutar el servidor y conectarse
+
+13-ingresar al login  Usuario:ADMIN Contraseña:ADMIN
+
+14-Probar todo lo que este hecho                                                                                                                                                                                                                                                                                                

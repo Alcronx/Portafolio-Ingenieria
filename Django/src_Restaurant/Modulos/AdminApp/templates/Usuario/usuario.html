@@ -1,0 +1,107 @@
+{% extends "contenidoComunAdmin.html" %}
+{% load static %}
+
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div class="d-flex flex-row-reverse bd-highlight col-12">
+    <a href="#" class="fas fa-user-plus fa-5x iconoAgregar" data-toggle="modal" data-target="#modalAgregar"></a>
+</div>
+<div id="reemplazar">
+    <table id="tablaUsuarios" class="display divDatatable">
+        <thead>
+            <tr>
+                <th>USUARIO</th>
+                <th>CONTRASEÑA</th>
+                <th>ROL</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in ListaUsuarios %}
+            <tr>
+                <td>{{fila.1}}</td>
+                <td>{{fila.2}}</td>
+                <td>{{fila.3}}</td>
+                <td class="d-flex justify-content-center">
+                      <!-- Boton HTMX editar!-->
+                    <button type="button" class="btn btn-success mr-2" hx-target="#ModalEditarUsuario" hx-swap="innerHTML" hx-get="{% url 'DetallesUsuarioHtmx'%}?id={{fila.0}}">
+                            <i class="fas fa-edit"></i>
+                    </button>
+                    <!-- Boton HTMX eliminar!-->
+                    <button type="button" id="BotonEliminar" class="btn btn-danger ml-2" hx-post="{% url 'modalEliminarUsuarioHtmx' %}?id={{fila.0}}" hx-target="#ModalEliminarUsuario" hx-swap="innerHTML">
+                    <i class="far fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!-- Modal Agregar Usuario !-->
+<div class="modal fade bd-example-modal-xl" id="modalAgregar" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content usercont">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{formLogin}}
+                    <!-- Boton HTMX !-->
+                    <button type="submit" class="btn btn-primary userbtn" hx-post="{% url 'AgregarUsuarioHtmx' %}"
+                        hx-target="#reemplazar" hx-swap="innerHTML">
+                        Agregar Usuario
+                    </button>
+                </form>
+            </div>
+         
+
+        </div>
+    </div>
+</div>
+<!-- Modal Editar Usuario !-->
+<div id="ModalEditarUsuario">
+</div>
+
+<!-- Modal Eliminar-->
+<div id="ModalEliminarUsuario">
+</div>
+
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+
+<script>
+    $(document).ready(function () {
+        $('#tablaUsuarios').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    });
+
+    function reload() {
+        $('#tablaUsuarios').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    }   
+</script>
+
+{% endblock endbody %}

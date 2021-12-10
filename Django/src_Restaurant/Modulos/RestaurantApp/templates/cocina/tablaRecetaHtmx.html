@@ -1,0 +1,58 @@
+<table class="tablaProductos col-12">
+    <tbody>
+        <thead>
+            <tr>
+                <td>Eliminar</td>
+                <td>Producto</td>
+                <td>Cantidad</td>
+                <td>Total</td>
+            </tr>
+        </thead>
+        {% if request.session.carritoReceta.items %}
+        {% for key, value in request.session.carritoReceta.items %}
+        <tr class="TablaOrden">
+            <td>
+                <button type="button" id="BotonEliminar" class="btn btn-danger ml-2"
+                    hx-post="{% url 'EliminarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                    hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </td>
+            <td>{{value.nombre}}</td>
+            <td>
+                <div class="input-group botonesCantidadTabla">
+                    <span class="input-group-btn">
+                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"
+                            hx-post="{% url 'RestarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                            hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                            <span class="fas fa-minus fa-lg"></span>
+                        </button>
+                    </span>
+                    <div class="mr-2 ml-2">{{value.cantidad}}</div>
+                    <span class="input-group-btn">
+                        <button type="button" class="quantity-right-plus btn btn-success btn-number"
+                            hx-post="{% url 'AgregarProductosRecetaHtmx' %}?id={{value.producto_id}}"
+                            hx-target="#reemplazarOrden" hx-swap="innerHTML">
+                            <span class="fas fa-plus fa-lg"></span>
+                        </button>
+                    </span>
+                </div>
+            </td>
+            <td>{{value.acumulado}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+    </tbody>
+</table>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-4 d-flex justify-content-center">
+        <button type="button" hx-post="{% url 'LimpiarProductosRecetaHtmx' %}" hx-target="#reemplazarOrden"
+            class="btn btn-danger"> Limpiar </button>
+    </div>
+    <div class="col-4 d-flex justify-content-center" class="btn btn-danger">
+        <button type="button" hx-post="{% url 'ModalGuardarDatosProductosRecetanHtmx' %}" hx-target="#ModalGuardarMenu"
+            hx-swap="innerHTML" class="btn btn-success"> Guardar </button></div>
+    <h2 class="col-4 d-flex justify-content-center">Total: {{totalCarrito}}</h2>
+</div>

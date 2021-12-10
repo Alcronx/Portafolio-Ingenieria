@@ -1,0 +1,42 @@
+.divBotonAgregarManu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centrarTexto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.paddingPersonalizado{
+    padding-left: 5px !important;
+    padding-right: 5px!important;
+    overflow: hidden;
+    width: 100% !important;
+    height: 35px !important;
+}
+
+.paddingPersonalizado2{
+  padding-left: 5px !important;
+  padding-right: 5px!important;
+  width: 100% !important;
+  height: 35px !important;
+}
+
+hr {
+  border-bottom: 1px solid rgb(165, 165, 165) !important;
+  width: 100% !important;
+  display: block !important;
+  font-size: 2em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  margin: 0px !important;
+  
+}
+
+.botoncss{
+  background-color: rgba(255, 255, 255, 0) !important;
+}

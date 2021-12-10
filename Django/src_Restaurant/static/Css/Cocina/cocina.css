@@ -1,0 +1,45 @@
+.menu1{
+    margin-bottom: 16px;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px; 
+}
+
+.margenPrecios{
+    margin-bottom: 16px !important;
+    margin-right: 0px !important;
+    font-family: 'calibri';
+    text-align: center;
+    border-radius: 8px; 
+}
+
+.menucont{
+    width: 450px;
+    background: rgb(255 255 255 / 90%);
+    padding: 90px;
+    margin: auto;
+}
+
+.menubtn{
+    width: 155px;
+    font-family: 'calibri';
+}
+
+.editreceta{
+    font-family: 'calibri';
+}
+
+.receditcont{
+    width: 700px;
+    background: rgb(255 255 255 / 90%);
+    padding: 90px;
+    margin: auto;
+}
+/* Tablero */
+
+.tablerocont{
+    padding: 100px;
+}
+.tablero1{
+    height: auto;
+}

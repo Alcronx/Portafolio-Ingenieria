@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="icon" type="image/png" href="" sizes="64x64">
+
+    <!--Libreria Bootstrap 	Css-->
+    <link href="{% static 'Librerias/Bootstrap/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+    <!--Css FontAwesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Librerias/Fontawesome/css/all.min.css' %}">
+    <!--Css slidebar -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Comun/slidebar.css' %}">
+    <!--Css DataTable -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Librerias/DataTable/datatables.css' %}">
+    <!--Css Totem -->
+    <link rel="stylesheet" type="text/css" href="{% static 'Css/Totem/totem.css' %}">
+    <!--Libreria Htmlx-->
+    <script src="{% static 'Librerias/Htmlx/htmx.min.js' %}"></script>
+    {% block head %}{% endblock head %}
+
+</head>
+
+<body>
+    {% block content %}{% endblock content %}
+
+    <!--Libreria Jquery-->
+    <script src="{% static 'Librerias/Jquery/jquery.min.js' %}"></script>
+
+    <!--Libreria Bootstrap Js-->
+    <script src="{% static 'Librerias/Bootstrap/bootstrap.min.js' %}"></script>
+
+    <!--Diseño Comun Js-->
+    <script src="{% static 'Css/Comun/slidebar.js' %}"></script>
+
+    <!--DataTable Plugin JS -->
+    <script type="text/javascript" charset="utf8" src="{% static 'Librerias/DataTable/datatables.js' %}"></script>
+
+    <!--Sweet Alert-->
+    <script src="{% static 'Librerias/Sweetalert/sweetalert.all.min.js' %}"></script>
+
+    <!--Diseño Comun Js-->
+    <script src="{% static 'Css/Totem/totem.js' %}"></script>
+
+    <!--Necesario para htmlx -->
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>
+
+    {% block endbody %}{% endblock endbody %}
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+{% extends "contenidoComunBodega.html" %}
+{% load static %}
+
+
+<!-- Titulo !-->
+{% block title %}{% endblock title %}
+
+<!-- Contenido del head !-->
+{% block head %}{% endblock head %}
+
+
+<!-- Todo lo que esta dentro del body !-->
+{% block content %}
+<div class="d-flex flex-row bd-highlight col-12">
+    <div>
+        <form method="POST">
+            <select class="btn btn-primary contenedorDropdown" name="cbxProductos">
+                <option value="0">Seleccione Proveedor</option>
+                {% for fila in cbxProveedor %}
+                <option value="{{fila.0}}">{{fila.1}}</option>
+                {% endfor %}
+            </select>
+            <button type="sumbit" class="btn btn-primary" hx-post="{% url 'ListarProductosOrdenHtmx' %}"
+                hx-target="#reemplazar" hx-swap="innerHTML">Busca Productos</button>
+        </form>
+    </div>
+</div>
+
+<div id="reemplazar">
+    <table id="dataTable" class="display divDatatable">
+        <thead>
+            <tr>
+                <td>Nombre Producto</td>
+                <td>Precio</td>
+                <td>Agregar Productos</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in Lista %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h1 class="Texto-detalles-Orden">Detalles Orden</h1>
+</div>
+
+<div id="reemplazarOrden">
+
+</div>
+
+
+
+
+{% endblock content %}
+
+
+<!-- Contenido Al final del body !-->
+{% block endbody %}
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    });
+
+    function reload() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "{% static 'Librerias/DataTable/datatableEspanol.json' %}"
+            },
+        });
+    }
+</script>
+
+{% endblock endbody %}
